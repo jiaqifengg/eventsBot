@@ -13,12 +13,18 @@ bot.remove_command("help")
 @bot.event
 async def on_ready():
     print("logged in as {0.user}".format(bot))
-    print("-"*16)
+    print("-" * 16)
 
 
 @bot.command()
-async def help(ctx, *args):
-    pass
+async def help(ctx):
+    em = discord.Embed(title="Help",
+                       description="Use m!help <command> for more detail")
+
+    em.add_field(name="Events", value="giveaway, event, secret santa")
+    em.add_field(name="Music", value="play,stop,continue,clear,queue")
+
+    await ctx.send(embed=em)
 
 
 @bot.command()
