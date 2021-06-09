@@ -18,7 +18,7 @@ async def on_ready():
     print("-" * 16)
 
 
-@bot.command()
+@bot.group(invoke_without_command=True)
 async def help(ctx):
     em = discord.Embed(title="Help",
                        description="Use m!help <command> for more details",
@@ -27,6 +27,15 @@ async def help(ctx):
     em.add_field(name="event", value="giveaway, event, secret santa")
     em.add_field(name="music", value="play,stop,continue,clear,queue")
 
+    await ctx.send(embed=em)
+
+
+@help.command()
+async def event(ctx):
+    em = discord.Embed(title="General Event",
+                       description="Create any event online or not")
+    em.add_field(name="Syntax", value="m!event - create an event interactively"
+                                      "\n(must have the Manage Server permission)")
     await ctx.send(embed=em)
 
 
@@ -56,6 +65,4 @@ async def event(ctx, *args):
     embed = discord.Embed(title="Event", description=description, color=0xEFB3FF)
 
     await ctx.send(embed=embed)
-
-
 bot.run(TOKEN)
