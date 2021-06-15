@@ -25,18 +25,29 @@ async def help(ctx):
                        color=random.randint(0, 0xFFFFFF))
 
     em.add_field(name="event", value="giveaway, event, secret santa")
-    em.add_field(name="music", value="play,stop,continue,clear,queue")
+    em.add_field(name="music", value="play,pause,continue,clear,queue")
 
     await ctx.send(embed=em)
 
 
 @help.command()
 async def event(ctx):
-    em = discord.Embed(title="General Event",
+    em = discord.Embed(title="Event",
                        description="Create any event online or not")
     em.add_field(name="Syntax", value="m!event - create an event interactively"
                                       "\n(must have the Manage Server permission)")
     await ctx.send(embed=em)
+
+
+@help.command()
+async def music(ctx):
+    em = discord.Embed(title="Music",
+                       description="Music Commands")
+    em.add_field(name="Syntax", value="m!play <link>\n"
+                                      "m!pause - pause currently playing song\n"
+                                      "m!continue - continue playing from pause\n"
+                                      "m!queue - view current song queue\n"
+                                      "m!clear - clear the queue")
 
 
 @bot.command()
@@ -65,4 +76,5 @@ async def event(ctx, *args):
     embed = discord.Embed(title="Event", description=description, color=0xEFB3FF)
 
     await ctx.send(embed=embed)
+
 bot.run(TOKEN)
